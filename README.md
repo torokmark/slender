@@ -1,2 +1,0 @@
-# peds
-Python Enhanced DataStructures
