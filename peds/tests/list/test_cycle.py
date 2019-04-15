@@ -1,12 +1,12 @@
 from unittest import TestCase
 from expects import expect, equal, raise_error 
 
-import peds
+from peds import List 
 
 class TestCycle(TestCase):
 
     def test_cycle_if_param_and_func_not_none(self):
-        e = peds.Enumerable(['a', 'b', 'c'])
+        e = List(['a', 'b', 'c'])
         it = e.cycle(2, lambda x: x.upper())
         expect(next(it)).to(equal('A'))
         expect(next(it)).to(equal('B'))
@@ -16,7 +16,7 @@ class TestCycle(TestCase):
         expect(next(it)).to(equal('C'))
 
     def test_cycle_if_func_is_none(self):
-        e = peds.Enumerable([1, 2, 0])
+        e = List([1, 2, 0])
         it = e.cycle(2)
         expect(next(it)).to(equal(1))
         expect(next(it)).to(equal(2))
@@ -26,7 +26,7 @@ class TestCycle(TestCase):
         expect(next(it)).to(equal(0))
     
     def test_cycle_if_lambda(self):
-        e = peds.Enumerable([1, 2, 4, 2])
+        e = List([1, 2, 4, 2])
         it = e.cycle(lambda i: i % 2 == 0)
         expect(next(it)).to(equal(False))
         expect(next(it)).to(equal(True))
@@ -34,7 +34,7 @@ class TestCycle(TestCase):
         expect(next(it)).to(equal(True))
 
     def test_cycle_if_no_params(self):
-        e = peds.Enumerable([1, 2, 4, 2])
+        e = List([1, 2, 4, 2])
         it = e.cycle()
         expect(next(it)).to(equal(1))
         expect(next(it)).to(equal(2))
@@ -54,7 +54,7 @@ class TestCycle(TestCase):
         expect(next(it)).to(equal(2))
 
     def test_cycle_if_param_type_is_different(self):
-        e = peds.Enumerable(['a', 'b', 'c'])
+        e = List(['a', 'b', 'c'])
         it = e.cycle('...')
         expect(lambda: next(it)).to(raise_error(TypeError))
 

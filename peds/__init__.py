@@ -1,3 +1,3 @@
 
-from .list import List, Enumerable
+from .list import List
 

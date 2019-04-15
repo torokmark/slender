@@ -3,20 +3,20 @@ import re
 from unittest import TestCase
 from expects import expect, equal, raise_error 
 
-import peds
+from peds import List
 
 class TestAny(TestCase):
     def setUp(self):
-        self.e = peds.Enumerable([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
+        self.e = List([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     def test_any_if_regex_with_no_matching(self):
-        e = peds.Enumerable(['apple', 'hola', 'appletree', 'applejuice', 'juice'])
+        e = List(['apple', 'hola', 'appletree', 'applejuice', 'juice'])
         pattern = re.compile('le*')
         result = e.any(pattern)
         expect(result).to(equal(False))
 
     def test_any_if_regex_with_any_matching(self):
-        e = peds.Enumerable(['apple', 'applehola', 'appletree', 'applejuice'])
+        e = List(['apple', 'applehola', 'appletree', 'applejuice'])
         pattern = re.compile('apple*')
         result = e.any(pattern)
         expect(result).to(equal(True))
