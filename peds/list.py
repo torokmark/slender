@@ -339,6 +339,35 @@ class List:
             yield x
 
 
+    def grep_v(self, pattern, func=None):
+        arr = []
+        if isinstance(pattern, re._pattern_type) or isinstance(pattern, str):
+            arr = [item for item in self if not re.search(pattern, item)]
+        else:
+            raise TypeError
+
+        if func is not None and isinstance(func, types.LambdaType):
+            arr = list(map(func, arr)) 
+        for x in arr:
+            yield x
+
+
+    def group_by(self, func):
+        if not isinstance(func, types.LambdaType):
+            raise TypeError
+        d = {}
+        for item in self:
+            k = func(item)
+            if k in d:
+                d[k].append(item)
+            else:
+                d[k] = [item]
+        return d
+
+
+    def include(self, value):
+        return value in self
+
     def map(self, callback=None):
         if callback is None:
             return iter(self)
