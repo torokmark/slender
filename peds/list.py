@@ -326,38 +326,38 @@ class List:
             return [item for _a in a for item in _a]
 
 
-    def grep(self, pattern, func=None):
+    def grep(self, pattern, callback=None):
         arr = []
         if isinstance(pattern, re._pattern_type) or isinstance(pattern, str):
             arr = [item for item in self if re.search(pattern, item)]
         else:
             raise TypeError
 
-        if func is not None and isinstance(func, types.LambdaType):
-            arr = list(map(func, arr)) 
+        if callback is not None and isinstance(callback, types.LambdaType):
+            arr = list(map(callback, arr)) 
         for x in arr:
             yield x
 
 
-    def grep_v(self, pattern, func=None):
+    def grep_v(self, pattern, callback=None):
         arr = []
         if isinstance(pattern, re._pattern_type) or isinstance(pattern, str):
             arr = [item for item in self if not re.search(pattern, item)]
         else:
             raise TypeError
 
-        if func is not None and isinstance(func, types.LambdaType):
-            arr = list(map(func, arr)) 
+        if callback is not None and isinstance(callback, types.LambdaType):
+            arr = list(map(callback, arr)) 
         for x in arr:
             yield x
 
 
-    def group_by(self, func):
-        if not isinstance(func, types.LambdaType):
+    def group_by(self, callback):
+        if not isinstance(callback, types.LambdaType):
             raise TypeError
         d = {}
         for item in self:
-            k = func(item)
+            k = callback(item)
             if k in d:
                 d[k].append(item)
             else:
@@ -368,6 +368,24 @@ class List:
     def include(self, value):
         return value in self
 
+
+    def inject(self, callback, init=None):
+        if len(self.__array) == 0:
+            return None
+        if isinstance(callback, types.LambdaType):
+            if init is not None:
+                memo = init
+                arr = self.__array
+            else:
+                memo = self.__array[0]
+                arr = self.__array[1:]
+            for item in arr:
+                memo = callback(memo, item)
+            return memo
+        else:
+            raise TypeError
+
+
     def map(self, callback=None):
         if callback is None:
             return iter(self)
@@ -375,5 +393,59 @@ class List:
             return list(map(callback, self))
 
 
+    def max(self, callback=None):
+        if len(self.__array) == 0:
+            return None
+        if isinstance(callback, types.LambdaType):
+            return max(self.__array, key=callback)
+        elif callback is None:
+            return max(self.__array)
+        else:
+            raise TypeError
+
+
+    def max_n(self, n, callback=None):
+        if len(self.__array) == 0:
+            yield None
+        if isinstance(n, int):
+            if callback is None:
+                arr = sorted(self.__array)
+            elif isinstance(callback, types.LambdaType):
+                arr = sorted(self.__array, key=callback)
+            else:
+                raise TypeError
+            for item in arr[-n:]:
+                yield item
+        else:
+            raise TypeError
+
+
+    def min(self, callback=None):
+        if len(self.__array) == 0:
+            return None
+        if isinstance(callback, types.LambdaType):
+            return min(self.__array, key=callback)
+        elif callback is None:
+            return min(self.__array)
+        else:
+            raise TypeError
+
+
+    def min_n(self, n, callback=None):
+        if len(self.__array) == 0:
+            yield None
+        if isinstance(n, int):
+            if callback is None:
+                arr = sorted(self.__array)
+            elif isinstance(callback, types.LambdaType):
+                arr = sorted(self.__array, key=callback)
+            else:
+                raise TypeError
+            for item in arr[:n]:
+                yield item
+        else:
+            raise TypeError
+
+    
     def select(self, callback=None):
         return self.find_all(callback) 
