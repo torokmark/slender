@@ -369,23 +369,6 @@ class List:
         return value in self
 
 
-    def inject(self, callback, init=None):
-        if len(self.__array) == 0:
-            return None
-        if isinstance(callback, types.LambdaType):
-            if init is not None:
-                memo = init
-                arr = self.__array
-            else:
-                memo = self.__array[0]
-                arr = self.__array[1:]
-            for item in arr:
-                memo = callback(memo, item)
-            return memo
-        else:
-            raise TypeError
-
-
     def map(self, callback=None):
         if callback is None:
             return iter(self)
@@ -421,7 +404,7 @@ class List:
 
 
     def min(self, callback=None):
-        if len(self.__array) == 0:
+        if not len(self.__array):
             return None
         if isinstance(callback, types.LambdaType):
             return min(self.__array, key=callback)
@@ -432,7 +415,7 @@ class List:
 
 
     def min_n(self, n, callback=None):
-        if len(self.__array) == 0:
+        if not len(self.__array):
             yield None
         if isinstance(n, int):
             if callback is None:
@@ -447,5 +430,70 @@ class List:
             raise TypeError
 
     
+    def none(self, callback=None):
+        if callback is None:
+            for item in self:
+                if item:
+                    return False
+        elif isinstance(callback, types.LambdaType):
+            for item in self:
+                if callback(item):
+                    return False
+        else:
+            raise TypeError
+        return True
+   
+
+    def one(self, callback=None):
+        counter = 0
+        if callback is None:
+            for item in self:
+                if item:
+                    counter += 1
+        elif isinstance(callback, types.LambdaType):
+            for item in self:
+                if callback(item):
+                    counter += 1 
+        else:
+            raise TypeError
+        return counter == 1
+
+    
+    def partition(self, callback=None):
+        arr = [[], []]
+        if callback is None:
+            for item in self:
+                if item:
+                    arr[0].append(item)
+                else:
+                    arr[1].append(item)
+        elif isinstance(callback, types.LambdaType):
+            for item in self:
+                if callback(item):
+                    arr[0].append(item)
+                else:
+                    arr[1].append(item)
+        else:
+            raise TypeError
+        return arr
+
+
+    def reduce(self, callback, init=None):
+        if len(self.__array) == 0:
+            return None
+        if isinstance(callback, types.LambdaType):
+            if init is not None:
+                memo = init
+                arr = self.__array
+            else:
+                memo = self.__array[0]
+                arr = self.__array[1:]
+            for item in arr:
+                memo = callback(memo, item)
+            return memo
+        else:
+            raise TypeError
+
+
     def select(self, callback=None):
         return self.find_all(callback) 
