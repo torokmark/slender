@@ -27,7 +27,7 @@ class TestCycle(TestCase):
     
     def test_cycle_if_lambda(self):
         e = List([1, 2, 4, 2])
-        it = e.cycle(lambda i: i % 2 == 0)
+        it = e.cycle(callback=lambda i: i % 2 == 0)
         expect(next(it)).to(equal(False))
         expect(next(it)).to(equal(True))
         expect(next(it)).to(equal(True))
@@ -53,8 +53,4 @@ class TestCycle(TestCase):
         expect(next(it)).to(equal(4))
         expect(next(it)).to(equal(2))
 
-    def test_cycle_if_param_type_is_different(self):
-        e = List(['a', 'b', 'c'])
-        it = e.cycle('...')
-        expect(lambda: next(it)).to(raise_error(TypeError))
 

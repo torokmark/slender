@@ -11,7 +11,7 @@ class TestCount(TestCase):
    
     def test_count_if_item(self):
         e = List([1, 2, 4, 2])
-        expect(e.count(2)).to(equal(2))
+        expect(e.count(lambda i: i == 2)).to(equal(2))
 
     def test_count_if_lambda(self):
         e = List([1, 2, 4, 2])
