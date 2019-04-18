@@ -7,12 +7,7 @@ class TestChunk(TestCase):
 
     def test_chunk(self):
         e = List([3, 1, 4, 1, 5, 9, 2, 6, 5, 3, 5])
-        it = e.chunk(lambda x: x % 2 == 0)
-        expect(next(it)).to(equal([False, [3, 1]]))
-        expect(next(it)).to(equal([True, [4]]))
-        expect(next(it)).to(equal([False, [1, 5, 9]]))
-        expect(next(it)).to(equal([True, [2, 6]]))
-        expect(next(it)).to(equal([False, [5, 3, 5]]))
+        expect(e.chunk(lambda x: x % 2 == 0).to_list()).to(equal([[False, [3, 1]], [True, [4]], [False, [1, 5, 9]], [True, [2, 6]], [False, [5, 3, 5]]]))
 
     def test_chunk_if_param_is_not_lambda(self):
         e = List([1, 2])

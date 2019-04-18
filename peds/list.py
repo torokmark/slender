@@ -38,7 +38,10 @@ class List:
         pass
 
     def __eq__(self, other):
-        pass
+        if isinstance(other, List):
+            return self.__array == other.to_list()
+        else:
+            return False
 
     def __iter__(self):
         return iter(self.__array)
@@ -82,7 +85,7 @@ class List:
             raise TypeError 
         for item in other:
             a.append(item)
-        return iter(a) 
+        return List(a)
 
 
     def chunk(self, callback):
@@ -95,7 +98,7 @@ class List:
                     a.append([callback(item), [item]])
         else:
             raise TypeError
-        return iter(a)
+        return List(a)
 
 
     def chunk_while(self, callback):
@@ -108,15 +111,7 @@ class List:
                     a.append([self.__array[i]])
         else:
             raise TypeError
-        return iter(a)
-
-
-    def collect(self, callback=None):
-        return self.map(callback) 
-
-
-    def collect_concat(self, callback=None):
-        return self.flat_map(callback)
+        return List(a)
 
 
     def count(self, callback=None):
@@ -144,40 +139,26 @@ class List:
 
     def drop(self, n):
         if isinstance(n, int) and n > 0:
-            return self.__array[n:] 
+            return List(self.__array[n:])
         else:
             raise TypeError
 
 
-    def drop_while(self, callback=None):
-        if callback is None:
-            for item in self:
-                yield item
-        elif isinstance(callback, types.LambdaType):
+    def drop_while(self, callback):
+        if isinstance(callback, types.LambdaType):
             arr = []
             for i in range(0, len(self.__array)):
                 if not callback(self.__array[i]):
                     arr = self.__array[i:]
                     break
-            for item in arr:
-                yield item
+            return List(arr)
         else:
             raise TypeError
 
 
-    def each_cons(self, n, callback=None):
-        if isinstance(n, int):
-            if 0 < n and n <= len(self.__array):
-                arr = [self.__array[i:i + n] for i in range(len(self.__array) - n + 1)]
-                for item in arr:
-                    if callback is None:
-                        yield item
-                    elif isinstance(callback, types.LambdaType):
-                        yield callback(item)
-                    else:
-                        raise TypeError
-            else:
-                raise TypeError 
+    def each_cons(self, n):
+        if isinstance(n, int) and 0 < n and n <= len(self.__array):
+            return List([self.__array[i:i + n] for i in range(len(self.__array) - n + 1)])
         else:
             raise TypeError
 
@@ -185,41 +166,46 @@ class List:
     def each_slice(self, n, callback=None):
         if not isinstance(n, int) or n < 0 or (callback is not None and not isinstance(callback, types.LambdaType)):
             raise TypeError
+        ret = []
         arr = []
         for item in self:
             arr.append(item)
             if len(arr) >= n:
                 if callback is not None:
-                    yield list(map(callback, arr))
+                    ret.append(list(map(callback, arr)))
                 else:
-                    yield arr 
+                    ret.append(arr)
                 arr = []
         if arr:
             if callback is not None:
-                yield list(map(callback, arr))
+                ret.append(list(map(callback, arr)))
             else:
-                yield arr
+                ret.append(arr)
+        return List(ret)
 
     def each_with_index(self, callback=None, start=0):
+        arr = []
         for idx, val in enumerate(self.__array[start:]):
             if callback is None:
-                yield [idx + start, val]
+                arr.append([idx + start, val])
             elif isinstance(callback, types.LambdaType):
-                yield callback(idx + start, val)
+                arr.append(callback(idx + start, val))
             else:
                 raise TypeError
+        return List(arr)
 
     
     def each_with_object(self, callback=None, object=None):
         if callback is not None and not isinstance(callback, types.LambdaType):
             raise TypeError
 
+        arr = []
         for item in self:
             if callback is not None:
-                yield [item, callback(item, object)]
+                arr.append([item, copy.deepcopy(callback(item, object))])
             else:
-                yield [item, object]
-
+                arr.append([item, object])
+        return List(arr)
 
     def find(self, callback, default=None):
         for i in self:
@@ -233,14 +219,10 @@ class List:
 
 
     def find_all(self, callback=None):
-        if callback is not None and isinstance(callback, types.LambdaType):
-            arr = [item for item in self if callback(item)]
-            for item in arr:
-                yield item
+        if isinstance(callback, types.LambdaType):
+            return List([item for item in self if callback(item)])
         elif callback is None:
-            arr = [item for item in self]
-            for item in arr:
-                yield item
+            return List([item for item in self])
         else:
             raise TypeError
    
@@ -292,9 +274,7 @@ class List:
 
         if callback is not None and isinstance(callback, types.LambdaType):
             arr = list(map(callback, arr)) 
-        for x in arr:
-            yield x
-
+        return List(arr)
 
     def grep_v(self, pattern, callback=None):
         arr = []
@@ -304,9 +284,7 @@ class List:
             raise TypeError
         if callback is not None and isinstance(callback, types.LambdaType):
             arr = list(map(callback, arr)) 
-        for x in arr:
-            yield x
-
+        return List(arr)
 
     def group_by(self, callback):
         if not isinstance(callback, types.LambdaType):
@@ -327,9 +305,9 @@ class List:
 
     def map(self, callback=None):
         if callback is None:
-            return iter(self)
+            return List(self.__array)
         else:
-            return list(map(callback, self))
+            return List(list(map(callback, self)))
 
 
     def max(self, callback=None):
@@ -345,7 +323,7 @@ class List:
 
     def max_n(self, num, callback=None):
         if len(self.__array) == 0:
-            yield None
+            return List([]) 
         if isinstance(num, int):
             if callback is None:
                 arr = sorted(self.__array)
@@ -353,8 +331,7 @@ class List:
                 arr = sorted(self.__array, key=callback)
             else:
                 raise TypeError
-            for item in arr[-num:]:
-                yield item
+            return List(arr[-num:])
         else:
             raise TypeError
 
@@ -372,16 +349,14 @@ class List:
 
     def min_n(self, num, callback=None):
         if not len(self.__array):
-            yield None
+            return List([]) 
         if isinstance(num, int):
             if callback is None:
-                arr = sorted(self.__array)
+                return List(sorted(self.__array)[:num])
             elif isinstance(callback, types.LambdaType):
-                arr = sorted(self.__array, key=callback)
+                return List(sorted(self.__array, key=callback)[:num])
             else:
                 raise TypeError
-            for item in arr[:num]:
-                yield item
         else:
             raise TypeError
 
@@ -431,7 +406,7 @@ class List:
                     arr[1].append(item)
         else:
             raise TypeError
-        return arr
+        return List(arr)
 
 
     def reduce(self, callback, init=None):
@@ -459,12 +434,12 @@ class List:
             arr = [item for item in self if not callback(item)]
         else:
             raise TypeError
-        return arr
+        return List(arr)
 
 
     def sort(self, callback=None):
         if callback is None or isinstance(callback, types.LambdaType):
-            return sorted(self.__array, key=callback)
+            return List(sorted(self.__array, key=callback))
         else:
             raise TypeError
 
@@ -476,6 +451,7 @@ class List:
     def to_list(self):
         return copy.deepcopy(self.__array)
 
+
     def unique(self, callback=None):
         if callback is None:
             return List(list(set(self.__array)))
@@ -483,13 +459,22 @@ class List:
             d = {}
             for item in self.__array:
                 d[callback(item)] = item
-            return list(d.values())
+            return List(list(d.values()))
         else:
             raise TypeError
 
 
-
-
+    def zip(self, other):
+        if isinstance(other, list) or isinstance(other, List):
+            l = max(len(self.__array), len(other))
+            arr = []
+            for i in range(0, l):
+                a = self.__array[i] if i < len(self.__array) else None
+                b = other[i] if i < len(other) else None
+                arr.append([a, b])
+            return List(arr)
+        else:
+            raise TypeError
 
 
 

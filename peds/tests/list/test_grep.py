@@ -9,31 +9,23 @@ class TestGrep(TestCase):
 
     def test_grep_if_param_regex_string_and_func_is_none(self):
         e = List(['apple', 'bear', 'cat', 'anchor'])
-        it = e.grep(r'^a[a-z]*$')
-        expect(next(it)).to(equal('apple'))
-        expect(next(it)).to(equal('anchor'))
+        expect(e.grep(r'^a[a-z]*$').to_list()).to(equal(['apple', 'anchor']))
     
     def test_grep_if_param_regex_object_and_func_is_none(self):
         e = List(['apple', 'bear', 'cat', 'anchor'])
-        it = e.grep(re.compile('^a[a-z]*$'))
-        expect(next(it)).to(equal('apple'))
-        expect(next(it)).to(equal('anchor'))
+        expect(e.grep(re.compile('^a[a-z]*$')).to_list()).to(equal(['apple', 'anchor']))
 
     def test_grep_if_param_regex_object_and_func_is_lambda(self):
         e = List(['apple', 'bear', 'cat', 'anchor'])
-        it = e.grep(re.compile('^a[a-z]*$'), lambda x: x * 2)
-        expect(next(it)).to(equal('appleapple'))
-        expect(next(it)).to(equal('anchoranchor'))
+        expect(e.grep(re.compile('^a[a-z]*$'), lambda x: x * 2).to_list()).to(equal(['appleapple', 'anchoranchor']))
 
     def test_grep_if_param_not_matching(self):
         e = List(['apple', 'bear', 'cat', 'anchor'])
-        it = e.grep(re.compile('^[0-9]'))
-        expect(lambda: next(it)).to(raise_error(StopIteration))
+        expect(e.grep(re.compile('^[0-9]')).to_list()).to(equal([]))
 
     def test_grep_if_param_is_non_regex_object_nor_string(self):
         e = List([])
-        it = e.grep(1)
-        expect(lambda: next(it)).to(raise_error(TypeError))
+        expect(lambda: e.grep(1)).to(raise_error(TypeError))
 
 
 

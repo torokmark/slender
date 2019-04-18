@@ -8,13 +8,11 @@ class TestDrop(TestCase):
 
     def test_drop_if_param_greater_than_length_returns_empty(self):
         e = List([1, 2, 3, 4])
-        act = e.drop(6)
-        expect(act).to(equal([]))
+        expect(e.drop(6).to_list()).to(equal([]))
 
     def test_drop_if_param_is_between_zero_and_length_returns_part(self):
         e = List([1, 2, 3, 4])
-        act = e.drop(2)
-        expect(act).to(equal([3, 4]))
+        expect(e.drop(2).to_list()).to(equal([3, 4]))
 
     def test_drop_if_param_is_less_than_zero_raises_error(self):
         e = List([1, 2, 3, 4])

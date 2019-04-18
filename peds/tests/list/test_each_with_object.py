@@ -7,36 +7,20 @@ from peds import List
 class TestEachWithObject(TestCase):
 
     def test_each_with_object_if_param_is_array(self):
-        e = List([1, 2, 3, 4, 5])
-        it = e.each_with_object(object=[])
-        expect(next(it)).to(equal([1, []]))
-        expect(next(it)).to(equal([2, []]))
-        expect(next(it)).to(equal([3, []]))
-        expect(next(it)).to(equal([4, []]))
-        expect(next(it)).to(equal([5, []]))
+        e = List([1, 2, 3])
+        expect(e.each_with_object(object=[]).to_list()).to(equal([[1, []], [2, []], [3, []]]))
 
     def test_each_with_object_if_param_is_string(self):
-        e = List([1, 2, 3, 4, 5])
-        it = e.each_with_object(object='a')
-        expect(next(it)).to(equal([1, 'a']))
-        expect(next(it)).to(equal([2, 'a']))
-        expect(next(it)).to(equal([3, 'a']))
-        expect(next(it)).to(equal([4, 'a']))
-        expect(next(it)).to(equal([5, 'a']))
+        e = List([1, 2, 3])
+        expect(e.each_with_object(object='a').to_list()).to(equal([[1, 'a'], [2, 'a'], [3, 'a']]))
 
     def test_each_with_object_if_param_is_array_and_func_is_not_none(self):
-        e = List([1, 2, 3, 4, 5])
-        it = e.each_with_object(object=[], callback=lambda item, obj: (obj.append(item), obj)[-1])
-        expect(next(it)).to(equal([1, [1]]))
-        expect(next(it)).to(equal([2, [1, 2]]))
-        expect(next(it)).to(equal([3, [1, 2, 3]]))
-        expect(next(it)).to(equal([4, [1, 2, 3, 4]]))
-        expect(next(it)).to(equal([5, [1, 2, 3, 4, 5]]))
+        e = List([1, 2, 3])
+        expect(e.each_with_object(object=[], callback=lambda item, obj: (obj.append(item), obj)[-1]).to_list()).to(equal([[1, [1]], [2, [1, 2]], [3, [1, 2, 3]]]))
 
     def test_each_with_object_if_func_is_different(self):
         e = List([1, 2, 3, 4])
-        it = e.each_with_object(object=[], callback=-1)
-        expect(lambda: next(it)).to(raise_error(TypeError))
+        expect(lambda: e.each_with_object(object=[], callback=-1)).to(raise_error(TypeError))
 
 
 
