@@ -4,38 +4,52 @@ import copy
 import types
 
 class List:
+
     def __init__(self, a=[]):
         if isinstance(a, list):
             self.__array = copy.deepcopy(a)
+        elif isinstance(a, List):
+            self.__array = copy.deepcopy(a.to_list())
         else:
             raise TypeError
+
 
     def __getitem__(self, key):
         return self.__array[key]
 
+
     def __setitem__(self, key, value):
         self.__array[key] = value
 
+
     def __and__(self, other):
-        pass
+        if isinstance(other, List):
+            other = other.to_list()
+        if isinstance(other, list):
+            s_other = set(other)
+            return List([item for item in self if item in s_other])
+        else:
+            raise TypeError
+
 
     def __add__(self, other):
-        a = copy.deepcopy(self.__array)
-        if other is not None:
-            a.extend(other)
-        return a
+        return self.concat(other)
+
 
     def __mul__(self, scalar):
-        pass # scalar can be int or str
+        if isinstance(scalar, int):
+            return List(self.__array * scalar)
+        else:
+            raise TypeError
+
 
     def __sub__(self, other):
-        pass
+        return self.difference(other)
+
 
     def __lshift__(self, obj):
-        pass
+        return self.append(obj)
 
-    def __or__(self, other):
-        pass
 
     def __eq__(self, other):
         if isinstance(other, List):
@@ -45,6 +59,10 @@ class List:
 
     def __iter__(self):
         return iter(self.__array)
+
+
+    def __len__(self):
+        return len(self.__array)
 
 
     def all(self, callback):
@@ -77,6 +95,12 @@ class List:
            return any(list(map(callback, self)))
         else:
             raise TypeError('callback has to be either regex pattern or lambda')
+
+
+    def append(self, obj):
+        a = copy.deepcopy(self.__array)
+        a.append(obj)
+        return List(a)
 
 
     def chain(self, other):
@@ -114,6 +138,21 @@ class List:
         return List(a)
 
 
+    def compact(self):
+        return List([item for item in self if item is not None])
+
+
+    def concat(self, other):
+        if other is not None and (not isinstance(other, list) and not isinstance(other, List)):
+            raise TypeError
+        if isinstance(other, List):
+            other = other.to_list()
+        a = self.__array
+        if other is not None:
+            a.extend(other)
+        return List(a)
+
+
     def count(self, callback=None):
         if callback is None:
             return len(self.__array)
@@ -135,6 +174,31 @@ class List:
                 yield callback(value)
             else:
                 yield value
+
+
+    def delete(self, obj):
+        return List([item for item in self if item != obj])
+
+
+    def delete_at(self, num):
+        arr = copy.deepcopy(self.__array)
+        if isinstance(num, int):
+            del arr[num]
+            return List(arr)
+        else:
+            raise TypeError
+
+
+    def delete_if(self, callback):
+        return self.reject(callback)
+
+
+    def difference(self, other):
+        if other is not None and not isinstance(other, list) and not isinstance(other, List):
+            raise TypeError
+        if isinstance(other, List):
+            other = other.to_list()
+        return List([item for item in self.__array if item not in other])
 
 
     def drop(self, n):
@@ -207,6 +271,11 @@ class List:
                 arr.append([item, object])
         return List(arr)
 
+
+    def empty(self):
+        return len(self.__array) == 0
+
+    
     def find(self, callback, default=None):
         for i in self:
             if callback(i):
@@ -232,6 +301,13 @@ class List:
         if isinstance(callback, types.LambdaType):
             arr = [idx for idx, val in enumerate(self) if callback(val)]
         return arr[0] if len(arr) > 0 else None
+
+
+    def find_rindex(self, callback):
+        arr = copy.deepcopy(self.__array)
+        arr.reverse()
+        ret = List(arr).find_index(callback)
+        return len(self) - 1 - ret if ret is not None else None
 
 
     def first(self, num=None):
@@ -301,6 +377,19 @@ class List:
 
     def include(self, value):
         return value in self
+
+
+    def join(self, separator=None):
+        if separator is None:
+            return ''.join(list(map(lambda x: str(x), self.__array)))
+        elif isinstance(separator, str):
+            return separator.join(list(map(lambda x: str(x), self.__array)))
+        else:
+            raise TypeError
+
+
+    def keep_if(self, callback):
+        return self.find_all(callback)
 
 
     def map(self, callback=None):
@@ -435,6 +524,20 @@ class List:
         else:
             raise TypeError
         return List(arr)
+
+
+    def reverse(self):
+        arr = copy.deepcopy(self.__array)
+        arr.reverse()
+        return List(arr)
+
+
+    def rotate(self, num):
+        if isinstance(num, int):
+            num = num % len(self)
+            return List(self.__array[-num:] + self.__array[:-num])
+        else:
+            raise TypeError
 
 
     def sort(self, callback=None):
