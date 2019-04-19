@@ -1,6 +1,6 @@
 import re
 import copy
-
+import random
 import types
 
 class List:
@@ -540,15 +540,21 @@ class List:
             raise TypeError
 
 
+    def select(self, callback=None):
+        return self.find_all(callback)
+
+
+    def shuffle(self):
+        arr = copy.deepcopy(self.__array)
+        random.shuffle(arr)
+        return List(arr)
+
+
     def sort(self, callback=None):
         if callback is None or isinstance(callback, types.LambdaType):
             return List(sorted(self.__array, key=callback))
         else:
             raise TypeError
-
-
-    def select(self, callback=None):
-        return self.find_all(callback)
 
 
     def to_list(self):
