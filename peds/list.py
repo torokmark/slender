@@ -4,9 +4,6 @@ import random
 import types
 
 class List:
-    '''
-    Documentation of class List
-    '''
     def __init__(self, a=[]):
         if isinstance(a, list):
             self.__array = copy.deepcopy(a)
@@ -19,7 +16,8 @@ class List:
 
 
     def __getitem__(self, key):
-        '''Support of indexing
+        '''
+        Support of indexing
 
         Parameters:
         key (int): index
@@ -31,10 +29,26 @@ class List:
 
 
     def __setitem__(self, key, value):
+        '''
+        Support of assignment via indexing
+
+        Parameters:
+        key (int): index
+        value (any): the assign object
+        '''
         self.__array[key] = value
 
 
     def __and__(self, other):
+        '''
+        Takes the intersection of this and the other lists.
+
+        Parameters:
+        other (List): other list (type of `List` or `list`)
+
+        Returns:
+        List of intersected elements.
+        '''
         if isinstance(other, List):
             other = other.to_list()
         if isinstance(other, list):
