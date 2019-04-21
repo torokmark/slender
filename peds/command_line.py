@@ -1,4 +1,4 @@
-from peds import List
+from peds import List, Set
 
 def main():
     l = List([1, 2, 3, 4, 5, 6, 7, 8, 9])

@@ -4,17 +4,29 @@ import random
 import types
 
 class List:
-
+    '''
+    Documentation of class List
+    '''
     def __init__(self, a=[]):
         if isinstance(a, list):
             self.__array = copy.deepcopy(a)
         elif isinstance(a, List):
             self.__array = copy.deepcopy(a.to_list())
+        elif isinstance(a, set):
+            self.__array = list(copy.deepcopy(a))
         else:
             raise TypeError
 
 
     def __getitem__(self, key):
+        '''Support of indexing
+
+        Parameters:
+        key (int): index
+
+        Returns:
+        object: Object on the given index
+        '''
         return self.__array[key]
 
 
@@ -66,6 +78,11 @@ class List:
 
 
     def all(self, callback):
+        """
+        Short descriptt....
+
+
+        """
         if isinstance(callback, re._pattern_type):
             for item in self:
                 if isinstance(item, str):

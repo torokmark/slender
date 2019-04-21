@@ -1,3 +1,4 @@
 nose
 rednose
 expects
+pydoc-markdown
