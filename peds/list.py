@@ -95,6 +95,8 @@ class List:
         """
         Short descriptt....
 
+        Parameters:
+        callback (lambda or Regex): 
 
         """
         if isinstance(callback, re._pattern_type):
