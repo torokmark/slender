@@ -1,9 +1,9 @@
 site_name: Dast
 
 generate:
-- list.md: peds.list.List++
-- set.md: peds.set.Set++
-- dictionary.md: peds.dictionary.Dictionary++
+- list.md: dast.list.List++
+- set.md: dast.set.Set++
+- dictionary.md: dast.dictionary.Dictionary++
 
 pages:
 - Home: index.md << ../README.md

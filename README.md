@@ -1,7 +1,7 @@
 # Welcome to Dast 
 
-**dast** contains types that are similar to the well-known built-in datastructures
-on proteins.
+**dast** contains types that are similar to the well-known built-in datastructures.
+All of them are chainable and equipped with useful methods!
 
 * *List* is an enhanced list having all the functionalities that the basic
   `list` buitl-in type has but extended with a lot of useful functions.
@@ -20,11 +20,11 @@ pip install dast
 ```python
 from dast import List
 
-a = List([1, 2, 3, 4, 5])
-  .delete_if(lambda x: x % 2 == 0)
-  .map(lambda x: x * 2)
-  .chain(['a', 'b'])
-  .each_with_index()
+a = List([1, 2, 3, 4, 5]) \
+  .delete_if(lambda x: x % 2 == 0) \
+  .map(lambda x: x * 2) \
+  .chain(['a', 'b']) \
+  .each_with_index() \
   .to_list() # => [[0, 2], [1, 6], [2, 10], [3, 'a'], [4, 'b]]
 ```
 ## Contribution
