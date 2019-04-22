@@ -27,5 +27,9 @@ a = List([1, 2, 3, 4, 5])
   .each_with_index()
   .to_list() # => [[0, 2], [1, 6], [2, 10], [3, 'a'], [4, 'b]]
 ```
+## Contribution
 
+1. Fork it!
+2. Make your changes!
+3. Send an PR!
 
