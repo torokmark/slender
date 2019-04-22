@@ -1,5 +1,10 @@
 # Welcome to Dast 
 
+[![Build Status](https://travis-ci.org/torokmark/dast.svg?branch=master)](https://travis-ci.org/torokmark/dast)
+[![Documentation Status](https://readthedocs.org/projects/dast/badge/?version=latest)](https://dast.readthedocs.io/en/latest/?badge=latest)
+
+
+
 **dast** contains types that are similar to the well-known built-in datastructures.
 All of them are chainable and equipped with useful methods!
 
