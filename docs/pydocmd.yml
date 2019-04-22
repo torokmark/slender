@@ -1,0 +1,27 @@
+site_name: Dast
+
+generate:
+- list.md: peds.list.List++
+- set.md: peds.set.Set++
+- dictionary.md: peds.dictionary.Dictionary++
+
+pages:
+- Home: index.md << ../README.md
+- Dast: 
+  - List: list.md
+  - Set: set.md
+  - Dictionary: dictionary.md
+
+docs_dir: sources
+gens_dir: _build/pydocmd     # This will end up as the MkDocs 'docs_dir'
+site_dir: _build/site
+theme:    readthedocs
+loader:   pydocmd.loader.PythonLoader
+preprocessor: pydocmd.preprocessor.Preprocessor
+
+theme: readthedocs
+header: html
+
+additional_search_paths:
+- ..
+
