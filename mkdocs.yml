@@ -1,0 +1,16 @@
+site_name: Dast
+nav:
+  - Home: index.md
+  - Dast:
+    - List: list.md
+    - Set: set.md
+    - Dictionary: dictionary.md
+
+theme: readthedocs
+
+markdown_extensions:
+    - toc:
+          permalink: "#"
+
+collapse_navigation: true
+
