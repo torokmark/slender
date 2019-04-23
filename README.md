@@ -32,7 +32,7 @@ a = List([1, 2, 3, 4, 5]) \
 
 ## Documentation
 
-For further information, read the documentation that can be found: https://dast.readthedocs.io/
+For further information, read the documentation that can be found: [https://dast.readthedocs.io/](https://dast.readthedocs.io/)
 
 ## Contribution
 
