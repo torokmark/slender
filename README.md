@@ -2,6 +2,9 @@
 
 **dast** provides chainable, enhanced datastructures over the well-known built-ins.
 
+[![Build Status](https://travis-ci.org/torokmark/dast.svg?branch=master)](https://travis-ci.org/torokmark/dast)
+[![Documentation Status](https://readthedocs.org/projects/dast/badge/?version=latest)](https://dast.readthedocs.io/en/latest/?badge=latest)
+
 * *List* is an enhanced list having all the functionalities that the basic
   `list` buitl-in type has but extended with a lot of useful functions.
 * *Set* is a superset, works as the general `set` type but it does a lot more
