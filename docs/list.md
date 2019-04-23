@@ -4,6 +4,79 @@
 List(self, a=[])
 ```
 
+## []
+
+```python
+List.__getitem__(self, key)
+
+List.__setitem__(self, key, value)
+```
+
+Supports reading a value on a given key and assigning new value via `[]` operator.
+
+## &
+
+```python
+List.__and__(self, other)
+```
+
+Takes the intersection of self and other and returns instance of `List`.
+
+Other can be both `list` or `List`.
+
+```python
+List([1, 2, 3]) & [2, 3, 4]
+# => [2, 3]
+```
+
+## +
+
+```python
+List.__add__(self, other)
+```
+
+Returns `List` object containing elements from self and `other`.
+
+```python
+List([1, 2, 3]) + ['a', 'b']
+List([1, 2, 3]) + List(['a', 'b'])
+# => [1, 2, 3, 'a', 'b']
+```
+
+## *
+
+```python
+List.__mul__(self, scalar)
+```
+
+Returns a list concatenated to each other `scalar` times.
+
+## -
+
+```python
+List.__sub__(self, other)
+```
+
+Returns the difference of self and other.
+
+*-* and *difference* are aliases.
+
+## <<
+
+```python
+List.__lshift__(self, obj)
+```
+
+`<<` operator appends `obj` to list.
+
+## ==
+
+```python
+List.__eq__(self, other)
+```
+
+Compares self and another object of type `List`.
+
 ## all
 
 ```python
@@ -393,6 +466,19 @@ List.include(self, value)
 
 Returns `True` if parameter is included in self. Otherwise it returns `False`.
 
+## iter
+
+```python
+List.__iter__(self)
+```
+Returns iterable object.
+
+```python
+it = iter(List([1, 2, 3]))
+next(it)
+# => 1
+```
+
 ## join
 
 ```python
@@ -410,6 +496,20 @@ List.keep_if(self, callback)
 Returns list of elements on which `callback` condition returns `True`.
 
 Opposite of `delete_if`. Alias for *find_all*.
+
+## len
+
+```python
+List.__len__(self)
+```
+
+Returns the length of list.
+
+```python
+e = List([1, 2, 3])
+len(e)
+# => 3
+```
 
 ## map
 

@@ -1,13 +1,12 @@
 # Welcome to Dast 
 
-**dast** contains types that are similar to the well-known built-in datastructures.
-All of them are chainable and equipped with useful methods!
+**dast** provides chainable, enhanced datastructures over the well-known built-ins.
 
 * *List* is an enhanced list having all the functionalities that the basic
   `list` buitl-in type has but extended with a lot of useful functions.
 * *Set* is a superset, works as the general `set` type but it does a lot more
   that the basic one.
-* *Dictionary* is a key-value pair container with builded heavy functionality. 
+* *Dictionary* is a key-value pair container, like `dict`, which is builded with heavy functionalities.
 
 ## Install 
 
@@ -30,7 +29,7 @@ a = List([1, 2, 3, 4, 5]) \
 
 ## Documentation
 
-For further information documentation can be found: https://dast.readthedocs.io/
+For further information, read the documentation that can be found: https://dast.readthedocs.io/
 
 ## Contribution
 
