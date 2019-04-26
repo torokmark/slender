@@ -197,7 +197,7 @@ class List:
         # => [[1, 2], [4], [9, 10, 11, 12], [15, 16], [19, 20, 21]]
         ```
         '''
-        a = [[self.__array[0]]]
+        a = [[self.__array[0]]] if len(self) > 0 else [[]]
         if isinstance(callback, types.LambdaType):
             for i in range(1, len(self.__array)):
                 if callback(self.__array[i - 1], self.__array[i]):
