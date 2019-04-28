@@ -15,10 +15,7 @@ class TestMap(TestCase):
 
     def test_map_with_bool(self):
         e = Set({1, 2, 3, 4, 5})
-        expect(e.map(lambda x: x >= 3)).to(equal({False, False, True, True, True}))
-
-    def test_map_create_one_element_long_set(self):
-        pass
+        expect(e.map(lambda x: x >= 3)).to(equal({False, True}))
 
     def test_map_lambda_is_different(self):
         e = Set({1, 2, 3})
