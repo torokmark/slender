@@ -4,7 +4,7 @@
 
 [![Build Status](https://travis-ci.org/torokmark/dast.svg?branch=master)](https://travis-ci.org/torokmark/dast)
 [![Documentation Status](https://readthedocs.org/projects/dast/badge/?version=latest)](https://dast.readthedocs.io/en/latest/?badge=latest)
-![PyPI](https://img.shields.io/pypi/v/dast.svg?color=blue)
+[![PyPI](https://img.shields.io/pypi/v/dast.svg?color=blue)](https://pypi.org/project/dast/)
 
 * *List* is an enhanced list having all the functionalities that the basic
   `list` buitl-in type has but extended with a lot of useful functions.
