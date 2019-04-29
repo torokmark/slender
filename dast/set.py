@@ -116,8 +116,9 @@ class Set:
         else:
             raise TypeError
         s = set()
+        print(a)
         for item in a:
-            s.add(frozenset(item))
+            s.add(Set(set(item)))
         return Set(s)
 
 
@@ -241,4 +242,4 @@ class Set:
         else:
             raise TypeError
 
-    
+   
