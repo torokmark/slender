@@ -5,12 +5,16 @@
 [![Build Status](https://travis-ci.org/torokmark/dast.svg?branch=master)](https://travis-ci.org/torokmark/dast)
 [![Documentation Status](https://readthedocs.org/projects/dast/badge/?version=latest)](https://dast.readthedocs.io/en/latest/?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/dast.svg?color=blue)](https://pypi.org/project/dast/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dast.svg)](https://github.com/torokmark/dast)
+[![PyPI - License](https://img.shields.io/pypi/l/dast.svg)](https://github.com/torokmark/dast/blob/master/LICENSE.md)
+
 
 * *List* is an enhanced list having all the functionalities that the basic
   `list` buitl-in type has but extended with a lot of useful functions.
 * *Set* is a superset, works as the general `set` type but it does a lot more
   that the basic one.
 * *Dictionary* is a key-value pair container, like `dict`, which is builded with heavy functionalities.
+* *Tuple* is a finate ordered list over the built-in `tuple`.
 
 ## Install 
 
