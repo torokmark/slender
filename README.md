@@ -38,6 +38,7 @@ a = List([1, 2, 3, 4, 5]) \
 ## Documentation
 
 For further information, read the documentation that can be found: [https://dast.readthedocs.io/](https://dast.readthedocs.io/)
+The project page is [https://torokmark.github.io/dast/](https://torokmark.github.io/dast/)
 
 ## Contribution
 
