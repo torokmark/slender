@@ -138,8 +138,39 @@ class Dictionary:
         pass
 
 
-    def 
-
+    def reject(self, key, value, callback):
+        pass
+    
+    def replace(self, hsh):
+        pass
+    
+    def select(self, key, value, callback):
+        pass
+    
+    def size(self):
+        pass
+    
+    def slice(self, *keys):
+        pass
+    
+    def store(self, key, value):
+        pass
+    
+    def to_array(self):
+        pass
+    
+    def to_hash(self):
+        pass
+    
+    def transform_keys(self, key, callback):
+        pass
+    
+    def transform_values(self, value, callback):
+        pass
+    
+    def values_at(self, *key):
+        pass
+        
 
 
 
