@@ -38,7 +38,7 @@ a = List([1, 2, 3, 4, 5]) \
 
 ## Documentation
 
-For further information, read the documentation that can be found: https://slender.readthedocs.io/
+For further information, read the documentation that can be found: https://slender.readthedocs.io  
 The project page is https://torokmark.github.io/slender
 
 ## Contribution
