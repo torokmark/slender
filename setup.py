@@ -5,20 +5,20 @@ this_directory = path.abspath(path.dirname(__file__))
 with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-setup(name='dast',
+setup(name='slender',
       version='0.1.3.3',
-      description='DAtaSTructures in Python',
+      description='Slender datastructures in Python',
       long_description=long_description,
       long_description_content_type='text/markdown',
-      url='http://github.com/torokmark/dast',
+      url='http://github.com/torokmark/slender',
       author='Mark Torok',
       license='Apache License 2.0',
-      packages=['dast'],
+      packages=['slender'],
       test_suite='nose.collector',
       tests_require=['nose'],
       python_requires='>=3.5',
       entry_points = {
-          'console_scripts': ['dast-bin=dast.command_line:main'],
+          'console_scripts': ['dast-bin=slender.command_line:main'],
       },
       classifiers=[
         'Programming Language :: Python',
@@ -28,7 +28,7 @@ setup(name='dast',
         'Programming Language :: Python :: 3 :: Only',
       ],
       project_urls={
-        'Documentation': 'https://dast.readthedocs.io',
-        'Source': 'https://github.com/torokmark/dast',
+        'Documentation': 'https://slender.readthedocs.io',
+        'Source': 'https://github.com/torokmark/slender',
       }
     )
