@@ -11,16 +11,16 @@
 
 
 * *List* is an enhanced list having all the functionalities that the basic
-  `list` buitl-in type has but extended with a lot of useful functions.
-* *Set* is a superset, works as the general `set` type but it does a lot more
-  that the basic one.
-* *Dictionary* is a key-value pair container, like `dict`, which is builded with heavy functionalities.
+  `list` buitl-in type does but extended with a lot of useful functions.
+* *Set* is a superset of the built-in one, works as the general `set` type but it does a lot more
+  that.
+* *Dictionary* is a key-value pair container, like `dict`, which is built with heavy functionalities.
 * *Tuple* is a finate ordered list over the built-in `tuple`.
 
 ## Install 
 
 ```sh
-pip install dast
+pip install slender 
 ```
 
 ## Usage 
