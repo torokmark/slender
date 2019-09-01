@@ -1,4 +1,4 @@
-# Welcome to Dast 
+# Welcome to Slender
 
 **Slender** provides chainable, enhanced datastructures over the well-known built-ins.
 
