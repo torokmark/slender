@@ -1,9 +1,9 @@
 # Welcome to Dast 
 
-**dast** provides chainable, enhanced datastructures over the well-known built-ins.
+**Slender** provides chainable, enhanced datastructures over the well-known built-ins.
 
 [![Build Status](https://travis-ci.org/torokmark/dast.svg?branch=master)](https://travis-ci.org/torokmark/dast)
-[![Documentation Status](https://readthedocs.org/projects/dast/badge/?version=latest)](https://dast.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://readthedocs.org/projects/slender/badge/?version=latest)](https://slender.readthedocs.io/en/latest/?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/dast.svg?color=blue)](https://pypi.org/project/dast/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dast.svg)](https://github.com/torokmark/dast)
 [![PyPI - License](https://img.shields.io/pypi/l/dast.svg)](https://github.com/torokmark/dast/blob/master/LICENSE.md)
@@ -25,7 +25,7 @@ pip install dast
 ## Usage 
 
 ```python
-from dast import List
+from slender import List
 
 a = List([1, 2, 3, 4, 5]) \
   .delete_if(lambda x: x % 2 == 0) \
@@ -37,8 +37,8 @@ a = List([1, 2, 3, 4, 5]) \
 
 ## Documentation
 
-For further information, read the documentation that can be found: [https://dast.readthedocs.io/](https://dast.readthedocs.io/)  
-The project page is [https://torokmark.github.io/dast/](https://torokmark.github.io/dast/)
+For further information, read the documentation that can be found: https://slender.readthedocs.io/
+The project page is https://torokmark.github.io/slender
 
 ## Contribution
 
