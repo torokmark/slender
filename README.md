@@ -2,11 +2,11 @@
 
 **Slender** provides chainable, enhanced datastructures over the well-known built-ins.
 
-[![Build Status](https://travis-ci.org/torokmark/dast.svg?branch=master)](https://travis-ci.org/torokmark/dast)
+[![Build Status](https://travis-ci.org/torokmark/slender.svg?branch=master)](https://travis-ci.org/torokmark/slender)
 [![Documentation Status](https://readthedocs.org/projects/slender/badge/?version=latest)](https://slender.readthedocs.io/en/latest/?badge=latest)
-[![PyPI](https://img.shields.io/pypi/v/dast.svg?color=blue)](https://pypi.org/project/dast/)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/dast.svg)](https://github.com/torokmark/dast)
-[![PyPI - License](https://img.shields.io/pypi/l/dast.svg)](https://github.com/torokmark/dast/blob/master/LICENSE.md)
+[![PyPI](https://img.shields.io/pypi/v/slender.svg?color=blue)](https://pypi.org/project/slender/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slender.svg)](https://github.com/torokmark/slender)
+[![PyPI - License](https://img.shields.io/pypi/l/slender.svg)](https://github.com/torokmark/slender/blob/master/LICENSE.md)
 
 
 * *List* is an enhanced list having all the functionalities that the basic
