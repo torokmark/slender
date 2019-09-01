@@ -1,7 +1,7 @@
-site_name: Dast
+site_name: Slender
 nav:
   - Home: index.md
-  - Dast:
+  - Slender:
     - List: list.md
     - Set: set.md
     - Dictionary: dictionary.md
