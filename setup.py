@@ -18,7 +18,7 @@ setup(name='slender',
       tests_require=['nose'],
       python_requires='>=3.5',
       entry_points = {
-          'console_scripts': ['dast-bin=slender.command_line:main'],
+          'console_scripts': ['slender-bin=slender.command_line:main'],
       },
       classifiers=[
         'Programming Language :: Python',
