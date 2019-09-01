@@ -16,7 +16,7 @@ setup(name='slender',
       packages=['slender'],
       test_suite='nose.collector',
       tests_require=['nose'],
-      python_requires='>=3.5',
+      python_requires='>=3.7',
       entry_points = {
           'console_scripts': ['slender-bin=slender.command_line:main'],
       },
