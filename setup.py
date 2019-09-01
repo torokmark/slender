@@ -22,7 +22,7 @@ setup(name='slender',
       },
       classifiers=[
         'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.7 :: Only',
+        'Programming Language :: Python :: 3 :: Only',
       ],
       project_urls={
         'Documentation': 'https://slender.readthedocs.io',
