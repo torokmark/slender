@@ -6,7 +6,8 @@
 [![Documentation Status](https://readthedocs.org/projects/slender/badge/?version=latest)](https://slender.readthedocs.io/en/latest/?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/slender.svg?color=blue)](https://pypi.org/project/slender/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slender.svg)](https://github.com/torokmark/slender)
-[![PyPI - License](https://img.shields.io/pypi/l/slender.svg)](https://github.com/torokmark/slender/blob/master/LICENSE.md)
+[![PyPI - License](https://img.shields.io/github/license/torokmark/slender)](https://github.com/torokmark/slender/blob/master/LICENSE.md)
+
 
 
 * *List* is an enhanced list having all the functionalities that the basic
