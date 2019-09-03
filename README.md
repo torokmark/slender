@@ -26,14 +26,21 @@ pip install slender
 ## Usage 
 
 ```python
-from slender import List
+from slender import List, Set
 
-a = List([1, 2, 3, 4, 5]) \
+print(List([1, 2, 3, 4, 5]) \
   .delete_if(lambda x: x % 2 == 0) \
   .map(lambda x: x * 2) \
   .chain(['a', 'b']) \
   .each_with_index() \
-  .to_list() # => [[0, 2], [1, 6], [2, 10], [3, 'a'], [4, 'b]]
+  .to_list()) # => [[0, 2], [1, 6], [2, 10], [3, 'a'], [4, 'b]]
+
+print((Set({1, 2, 2, 3, 6, 7, 8}) \
+  .subtract(Set({3, 5, 10})) \
+  .select(lambda x: x % 2 == 0) \
+  << 4 \
+  << 5 \
+  ).map(lambda x: x * 2)) # => {4, 8, 10, 12, 16}
 ```
 
 ## Documentation

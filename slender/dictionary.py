@@ -8,6 +8,13 @@ VT = typing.TypeVar('VT')
 class Dictionary(typing.Generic[KT, VT]):
 
     def __init__(self, d={}):
+        '''
+        Create new instance of Dictionary 
+
+        Parameters:
+        a (dicitonary): Dictionary of key-value pairs
+                    It can be `dict`, or `Dictionary` 
+        '''
         if isinstance(d, dict):
             self.__dict = copy.deepcopy(d)
         elif isinstance(d, Dictionary):
@@ -22,6 +29,15 @@ class Dictionary(typing.Generic[KT, VT]):
 
 
     def __lt__(self, other: 'Dictionary[KT, VT]') -> bool:
+        '''
+        Suport of < operator
+
+        Parameters:
+        other (Dictionary): dictionary on the right side
+
+        Returns:
+        value (bool): returns True or False
+        '''
         if not self.__dict and not other.to_dict():
             return False
         if len(self.__dict) >= len(other):
@@ -34,6 +50,15 @@ class Dictionary(typing.Generic[KT, VT]):
 
 
     def __le__(self, other: 'Dictionary[KT, VT]') -> bool:
+        '''
+        Suport of <= operator
+
+        Parameters:
+        other (Dictionary): dictionary on the right side
+
+        Returns:
+        value (bool): returns True or False
+        '''
         if len(self.__dict) > len(other):
             return False
         for key in self.__dict:

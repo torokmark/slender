@@ -10,7 +10,7 @@ class List:
 
         Parameters:
         a (list): list of elements for further working
-                    It can `list`, `List`, or `set`
+                    It can be `list`, `List`, or `set`
         '''
         if isinstance(a, list):
             self.__array = copy.deepcopy(a)
