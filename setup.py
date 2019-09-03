@@ -7,7 +7,7 @@ with open(path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 setup(name='slender',
       version='0.1.3.3',
-      description='Slender datastructures in Python',
+      description='Slender datastructures in Python for efficient work!',
       long_description=long_description,
       long_description_content_type='text/markdown',
       url='http://github.com/torokmark/slender',
@@ -15,7 +15,7 @@ setup(name='slender',
       license='Apache License 2.0',
       packages=['slender'],
       test_suite='nose.collector',
-      tests_require=['nose'],
+      tests_require=['nose', 'mypy'],
       python_requires='>=3.7',
       entry_points = {
           'console_scripts': ['slender-bin=slender.command_line:main'],

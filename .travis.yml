@@ -2,4 +2,11 @@ language: python
 python:
   - '3.7'
 
-script: python setup.py test
+jobs:
+  include:
+    - stage: 'Static type check'
+      name: 'mypy check'
+      script: mypy --tb --ignore-missing-imports --disallow-any-generics -p slender 
+    - stage: 'Tests'
+      name: 'Unit tests'
+      script: python setup.py test

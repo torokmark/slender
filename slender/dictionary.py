@@ -1,11 +1,14 @@
 
 import copy
-import types
+import typing
 
-class Dictionary:
+KT = typing.TypeVar('KT')
+VT = typing.TypeVar('VT')
+
+class Dictionary(typing.Generic[KT, VT]):
 
     def __init__(self, d={}):
-        if isinstance(d, dictionary):
+        if isinstance(d, dict):
             self.__dict = copy.deepcopy(d)
         elif isinstance(d, Dictionary):
             self.__dict = copy.deepcopy(d.to_dict())
@@ -18,28 +21,60 @@ class Dictionary:
         pass
 
 
-    def __lt__(self, other):
-        pass
+    def __lt__(self, other: 'Dictionary[KT, VT]') -> bool:
+        if not self.__dict and not other.to_dict():
+            return False
+        if len(self.__dict) >= len(other):
+            return False
+        for key in self.__dict:
+            if key not in other.to_dict().keys() or self.__dict[key] != other.to_dict()[key]:
+                return False
+        else:
+            return True
 
 
-    def __le__(self, other):
-        pass
+    def __le__(self, other: 'Dictionary[KT, VT]') -> bool:
+        if len(self.__dict) > len(other):
+            return False
+        for key in self.__dict:
+            if key not in other.to_dict().keys() or self.__dict[key] != other.to_dict()[key]:
+                return False
+        else:
+            return True
 
 
-    def __len__(self):
-        pass
+    def __len__(self) -> int:
+        return len(self.__dict)
 
 
-    def __eq__(self, other):
-        pass
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Dictionary):
+            return False
+        if len(self.__dict) != len(other):
+            return False
+        ret = [key for key in self.__dict if key in other.to_dict()]
+        return True if len(ret) == len(self.__dict) else False
 
-
-    def __gt__(self, other):
-        pass
+    def __gt__(self, other: 'Dictionary[KT, VT]') -> bool:
+        if not self.__dict and not other.to_dict():
+            return False
+        if len(self.__dict) <= len(other):
+            return False
+        for key in other.to_dict(): 
+            if key not in self.__dict or self.__dict[key] != other.to_dict()[key]:
+                return False
+        else:
+            return True
 
 
     def __ge__(self, other):
-        pass
+        if len(self.__dict) < len(other):
+            return False
+        for key in other.to_dict(): 
+            if key not in self.__dict or self.__dict[key] != other.to_dict()[key]:
+                return False
+        else:
+            return True
 
 
     def __getitem__(self, key):
@@ -50,6 +85,10 @@ class Dictionary:
         pass
 
 
+    def __contains__(self, key: KT) -> bool:
+         return key in self.__dict
+
+    
     def any(self, pattern=None, callback=None):
         pass
 
@@ -148,7 +187,7 @@ class Dictionary:
         pass
     
     def size(self):
-        pass
+        return len(self.__dict.keys()) 
     
     def slice(self, *keys):
         pass
@@ -159,8 +198,8 @@ class Dictionary:
     def to_array(self):
         pass
     
-    def to_hash(self):
-        pass
+    def to_dict(self):
+        return copy.deepcopy(self.__dict) 
     
     def transform_keys(self, key, callback):
         pass

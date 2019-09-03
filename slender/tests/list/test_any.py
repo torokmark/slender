@@ -31,7 +31,7 @@ class TestAny(TestCase):
         result = self.e.any(predicate)
         expect(result).to(equal(True))
 
-    def test_any_if_lambda_with_any_matching(self):
+    def test_any_if_param_is_different(self):
         predicate = 'predicate'
         expect(lambda: self.e.any(predicate)).to(raise_error(TypeError))
 

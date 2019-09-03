@@ -12,6 +12,6 @@ class TestInit(TestCase):
     def test_list_is_not_none(self):
         expect(self.l).not_to(equal(None))
 
-    @skip
+    @skip('Check whether main is callable')
     def test_basic(self):
         main()
