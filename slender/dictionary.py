@@ -286,7 +286,6 @@ class Dictionary(typing.Generic[KT, VT]):
                 _dict[k] = callback(k, _dict[k], _other[k])
             else:
                 _dict[k] = v
-
         return Dictionary[KT, VT](_dict)
 
     def rassoc(self, obj):
