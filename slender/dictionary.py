@@ -274,13 +274,19 @@ class Dictionary(typing.Generic[KT, VT]):
 
     def merge(self, other: 'Dictionary[KT, VT]', callback: typing.Callable[[KT, VT, VT], VT]=None) -> 'Dictionary[KT, VT]':
         _dict: typing.Dict[KT, VT] = copy.deepcopy(self.__dict)
-        for k, v in other.to_dict().items():
+        if isinstance(other, dict):
+            _other = other
+        elif isinstance(other, Dictionary):
+            _other = other.to_dict()
+        else:
+            raise TypeError
+
+        for k, v in _other.items():
             if _dict.get(k) and callback is not None:
-                _dict[k] = callback(k, _dict[k], other[k])
+                _dict[k] = callback(k, _dict[k], _other[k])
             else:
                 _dict[k] = v
 
-        print('--> ', _dict)
         return Dictionary[KT, VT](_dict)
 
     def rassoc(self, obj):

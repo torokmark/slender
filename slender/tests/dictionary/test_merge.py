@@ -35,3 +35,7 @@ class TestMerge(TestCase):
         d2 = Dictionary[str, int]({'c': 3, 'b': 4})
         expect(d1.merge(d2, lambda k, ov, nv: ov + nv)).to(equal(Dictionary[str, int]({'a': 1, 'b': 6, 'c': 3})))
 
+    def test_merge_if_parameter_type_is_different(self):
+        d1 = Dictionary[str, int]({'a': 1, 'b': 2})
+        expect(lambda: d1.merge(1)).to(raise_error(TypeError))
+
