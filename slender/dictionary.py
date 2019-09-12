@@ -265,12 +265,7 @@ class Dictionary(typing.Generic[KT, VT]):
 
 
     def keep_if(self, callback: typing.Callable[[KT, VT], bool]) -> 'Dictionary[KT, VT]':
-        _dict: typing.Dict[KT, VT] = {}
-        for k, v in self.__dict.items():
-            if callback(k, v):
-                _dict[k] = v
-        return Dictionary[KT, VT](_dict)
-
+        return self.__select(callback) 
 
     def merge(self, other: 'Dictionary[KT, VT]', callback: typing.Callable[[KT, VT, VT], VT]=None) -> 'Dictionary[KT, VT]':
         _dict: typing.Dict[KT, VT] = copy.deepcopy(self.__dict)
@@ -288,43 +283,40 @@ class Dictionary(typing.Generic[KT, VT]):
                 _dict[k] = v
         return Dictionary[KT, VT](_dict)
 
-    def rassoc(self, obj):
-        pass
+    def select(self, callback: typing.Callable[[KT, VT], bool]) -> 'Dictionary[KT, VT]':
+        return self.__select(callback) 
+
+    
+    def __select(self, callback: typing.Callable[[KT, VT], bool]) -> 'Dictionary[KT, VT]':
+        _dict: typing.Dict[KT, VT] = {}
+        for k, v in self.__dict.items():
+            if callback(k, v):
+                _dict[k] = v
+        return Dictionary[KT, VT](_dict)
 
 
-    def reject(self, key, value, callback):
-        pass
-    
-    def replace(self, hsh):
-        pass
-    
-    def select(self, key, value, callback):
-        pass
-    
-    def size(self):
+    def size(self) -> int:
         return len(self.__dict.keys()) 
     
-    def slice(self, *keys):
-        pass
+    def slice(self, *keys) -> 'Dictionary[KT, VT]':
+        _dict: typing.Dict[KT, VT] = {}
+        for key in keys:
+            if key in self.__dict:
+                _dict[key] = self.__dict[key]
+
+        return Dictionary[KT, VT](_dict)
     
-    def store(self, key, value):
-        pass
-    
-    def to_array(self):
-        pass
+
+    def to_list(self) -> typing.List[typing.List[typing.Any]]:
+        _list: typing.List[typing.Any] = []
+        for k, v in self.__dict.items():
+            _list.append([k, v])
+        return _list
     
     def to_dict(self):
         return copy.deepcopy(self.__dict) 
     
-    def transform_keys(self, key, callback):
-        pass
     
-    def transform_values(self, value, callback):
-        pass
-    
-    def values_at(self, *key):
-        pass
-        
 
 
 
