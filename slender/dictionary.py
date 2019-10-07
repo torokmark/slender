@@ -26,11 +26,6 @@ class Dictionary(typing.Generic[KT, VT]):
         self.__default: typing.Optional[KT] = None
 
 
-    @staticmethod
-    def try_convert(obj):
-        pass
-
-
     def __lt__(self, other: 'Dictionary[KT, VT]') -> bool:
         '''
         Suport of < operator
@@ -141,7 +136,6 @@ class Dictionary(typing.Generic[KT, VT]):
                 d[k] = self.__dict[k]
         return Dictionary[KT, VT](d)
    
-
 
     def default(self, key: KT) -> None:
         self.__default = key
