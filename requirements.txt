@@ -3,3 +3,4 @@ nose
 rednose
 expects
 pydoc-markdown
+twine
