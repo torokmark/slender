@@ -1,10 +1,7 @@
-<p align="center">
+# Slender 
+  
+**Slender** provides chainable, type-safe, enhanced datastructures over the well-known built-ins.
 
-  <h1>Slender</h1>
-
-  <b>Slender</b> provides chainable, enhanced datastructures over the well-known built-ins.
-
-</p>
 
 [![Build Status](https://travis-ci.org/torokmark/slender.svg?branch=master)](https://travis-ci.org/torokmark/slender)
 [![Documentation Status](https://readthedocs.org/projects/slender/badge/?version=latest)](https://slender.readthedocs.io/en/latest/?badge=latest)
