@@ -307,7 +307,7 @@ class Dictionary(typing.Generic[KT, VT]):
             _list.append([k, v])
         return _list
     
-    def to_dict(self):
+    def to_dict(self) -> typing.Dict[KT, VT]:
         return copy.deepcopy(self.__dict) 
     
     
