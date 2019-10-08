@@ -1,8 +1,8 @@
 <p align="center">
 
-<h1>Slender</h1>
+  <h1>Slender</h1>
 
-**Slender** provides chainable, enhanced datastructures over the well-known built-ins.
+  <b>Slender</b> provides chainable, enhanced datastructures over the well-known built-ins.
 
 </p>
 
