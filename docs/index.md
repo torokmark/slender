@@ -1,13 +1,13 @@
-# Welcome to Slender
+# Slender 
+  
+**Slender** provides chainable, type-safe, enhanced datastructures over the well-known built-ins.
 
-**Slender** provides chainable, enhanced datastructures over the well-known built-ins.
 
 [![Build Status](https://travis-ci.org/torokmark/slender.svg?branch=master)](https://travis-ci.org/torokmark/slender)
 [![Documentation Status](https://readthedocs.org/projects/slender/badge/?version=latest)](https://slender.readthedocs.io/en/latest/?badge=latest)
 [![PyPI](https://img.shields.io/pypi/v/slender.svg?color=blue)](https://pypi.org/project/slender/)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/slender.svg)](https://github.com/torokmark/slender)
 [![PyPI - License](https://img.shields.io/github/license/torokmark/slender)](https://github.com/torokmark/slender/blob/master/LICENSE.md)
-
 
 
 * *List* is an enhanced list having all the functionalities that the basic
@@ -46,7 +46,7 @@ print((Set({1, 2, 2, 3, 6, 7, 8}) \
 ## Documentation
 
 For further information, read the documentation that can be found: https://slender.readthedocs.io  
-The project page is https://torokmark.github.io/slender
+
 
 ## Contribution
 

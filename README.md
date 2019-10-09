@@ -45,7 +45,8 @@ print((Set({1, 2, 2, 3, 6, 7, 8}) \
 
 ## Documentation
 
-For further information, read the documentation that can be found: https://slender.readthedocs.io  
+For further information, read the documentation that can be found: 
+[https://slender.readthedocs.io](https://slender.readthedocs.io)
 
 
 ## Contribution
