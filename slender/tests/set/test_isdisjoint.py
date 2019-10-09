@@ -11,11 +11,11 @@ class TestIsdisjoint(TestCase):
 
     def test_isdisjoint_if_disjoint(self):
         e = Set({1, 2, 3, 4})
-        expect(e.isdisjoint({5, 6, 7})).to(be_true)
+        expect(e.isdisjoint(Set({5, 6, 7}))).to(be_true)
 
-    def test_isdisjoint_if_set_is_empty(self):
+    def test_isdisjoint_if_param_is_different(self):
         e = Set({1, 2, 3})
-        expect(lambda: e.isdisjoint('...')).to(raise_error(TypeError))
+        expect(e.isdisjoint('...')).to(be_false)
 
 
 

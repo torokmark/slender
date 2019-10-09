@@ -23,7 +23,7 @@ class TestEq(TestCase):
     def test_eq_other_is_equal(self):
         e = Set({1, 2, 3})
         o = {3, 2, 1}
-        expect(e == o).to(be_true)
+        expect(e == o).to(be_false)
 
     def test_eq_other_is_equal_with_enhanced_set(self):
         e = Set({1, 2, 3})
@@ -32,7 +32,7 @@ class TestEq(TestCase):
 
     def test_eq_other_is_different(self):
         e = Set({1, 2, 3})
-        expect(lambda: e == '...').to(raise_error(TypeError))
+        expect(e == 1).to(be_false)
 
 
 
