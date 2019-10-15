@@ -9,9 +9,9 @@ class Set(typing.Generic[VT]):
 
     def __init__(self, s=set()) -> None:
         if isinstance(s, set):
-            self.__set = s
+            self.__set = copy.deepcopy(s)
         elif isinstance(s, Set):
-            self.__set = s.to_set()
+            self.__set = copy.deepcopy(s.to_set())
         else:
             raise TypeError
 

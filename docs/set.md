@@ -7,7 +7,7 @@ Set(self, s=set())
 ## &
 
 ```python
-Set.__and__(self, other)
+Set.__and__(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns the intersection of self and `other`.
@@ -17,7 +17,7 @@ Returns the intersection of self and `other`.
 ## ==
 
 ```python
-Set.__eq__(self, other)
+Set.__eq__(self, other: object) -> bool
 ```
 
 Returns `True` if self and `other` are equal otherwise `False`.
@@ -25,7 +25,7 @@ Returns `True` if self and `other` are equal otherwise `False`.
 ## -
 
 ```python
-Set.__sub__(self, other)
+Set.__sub__(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns the difference of two sets.
@@ -35,7 +35,7 @@ Returns the difference of two sets.
 ## >
 
 ```python
-Set.__ge__(self, other)
+Set.__ge__(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is superset of `other`.
@@ -45,7 +45,7 @@ Returns `True` if self is superset of `other`.
 ## >=
 
 ```python
-Set.__gt__(self, other)
+Set.__gt__(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is proper superset of `other`.
@@ -55,7 +55,7 @@ Returns `True` if self is proper superset of `other`.
 ## <<
 
 ```python
-Set.__lshift__(self, obj)
+Set.__lshift__(self, obj: VT) -> Set[VT]
 ```
 
 Add one element to the `Set` object.
@@ -72,7 +72,7 @@ s = Set({1, 2, 3}) << 4
 ## <=
 
 ```python
-Set.__le__(self, other)
+Set.__le__(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is subset of `other`. Otherwise it returns `False`.
@@ -82,7 +82,7 @@ Returns `True` if self is subset of `other`. Otherwise it returns `False`.
 ## <
 
 ```python
-Set.__lt__(self, other)
+Set.__lt__(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is proper subset of `other`. Otherwise it returns `False`.
@@ -92,7 +92,7 @@ Returns `True` if self is proper subset of `other`. Otherwise it returns `False`
 ## |
 
 ```python
-Set.__or__(self, other)
+Set.__or__(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns the union of the current object and `other`.
@@ -107,7 +107,7 @@ Set({1, 2, 3}) | Set({2, 3, 4})
 ## add
 
 ```python
-Set.add(self, obj)
+Set.add(self, obj: VT) -> Set[VT]
 ```
 
 Returns a new set containing the newly added element.
@@ -117,7 +117,7 @@ Returns a new set containing the newly added element.
 ## delete
 
 ```python
-Set.delete(self, obj)
+Set.delete(self, obj: VT) -> Set[VT]
 ```
 
 Returns a new set without the `obj` element.
@@ -125,7 +125,7 @@ Returns a new set without the `obj` element.
 ## delete_if
 
 ```python
-Set.delete_if(self, callback)
+Set.delete_if(self, callback: typing.Callable[[VT], bool]) -> Set[VT]
 ```
 
 Returns a new set without containing all elements that passed the `callback` condition.
@@ -141,7 +141,7 @@ e.delete_if(lambda x: x % 2 == 0)
 ## difference
 
 ```python
-Set.difference(self, other)
+Set.difference(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns the difference of the current object and `other`.
@@ -158,7 +158,7 @@ e.difference(o)
 ## isdisjoint
 
 ```python
-Set.isdisjoint(self, other)
+Set.isdisjoint(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self and `other` sets are disjoint to each other. Otherwise `False`.
@@ -166,7 +166,7 @@ Returns `True` if self and `other` sets are disjoint to each other. Otherwise `F
 ## divide
 
 ```python
-Set.divide(self, callback)
+Set.divide(self, callback: typing.Callable[[VT, VT], bool]) -> Set[VT]
 ```
 
 It groups elements based on the `callback` condition.
@@ -180,7 +180,7 @@ e.divide(lambda i, j: abs(i - j) == 1)
 ## emtpy
 
 ```python
-Set.empty(self)
+Set.empty(self) -> bool
 ```
 
 Returns wether the current object is empty or not.
@@ -188,7 +188,7 @@ Returns wether the current object is empty or not.
 ## flatten
 
 ```python
-Set.flatten(self)
+Set.flatten(self) -> Set[VT]
 ```
 
 Returns a flat-out set.
@@ -196,7 +196,7 @@ Returns a flat-out set.
 ## hash
 
 ```python
-Set.__hash__(self)
+Set.__hash__(self) -> int
 ```
 
 Returns the hash value of the instance.
@@ -204,7 +204,7 @@ Returns the hash value of the instance.
 ## include
 
 ```python
-Set.include(self, obj)
+Set.include(self, obj) -> bool
 ```
 
 Return `True` if `obj` is in the current set object, otherwise it returns `False`.
@@ -212,7 +212,7 @@ Return `True` if `obj` is in the current set object, otherwise it returns `False
 ## intersect
 
 ```python
-Set.intersect(self, other)
+Set.intersect(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if current object and `other` has mutual values, `False` otherwise.
@@ -220,7 +220,7 @@ Returns `True` if current object and `other` has mutual values, `False` otherwis
 ## intersection
 
 ```python
-Set.intersection(self, other)
+Set.intersection(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns a new set containing the intersection of the current and `other` objects.
@@ -228,7 +228,7 @@ Returns a new set containing the intersection of the current and `other` objects
 ## ispropersubset
 
 ```python
-Set.ispropersubset(self, other)
+Set.ispropersubset(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is proper subset of `other`. `False` otherwise.
@@ -236,7 +236,7 @@ Returns `True` if self is proper subset of `other`. `False` otherwise.
 ## ispropersuperset
 
 ```python
-Set.ispropersuperset(self, other)
+Set.ispropersuperset(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is proper superset of `other`. `False` otherwise.
@@ -244,7 +244,7 @@ Returns `True` if self is proper superset of `other`. `False` otherwise.
 ## issubset
 
 ```python
-Set.issubset(self, other)
+Set.issubset(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is subset of `other`, `False` otherwise.
@@ -252,7 +252,7 @@ Returns `True` if self is subset of `other`, `False` otherwise.
 ## issuperset
 
 ```python
-Set.issuperset(self, other)
+Set.issuperset(self, other: Set[VT]) -> bool
 ```
 
 Returns `True` if self is superset of `other`, `False` otherwise.
@@ -268,7 +268,7 @@ Returns an iterator object of the instance.
 ## keep_if
 
 ```python
-Set.keep_if(self, callback)
+Set.keep_if(self, callback: typing.Callable[[VT], bool]) -> Set[VT]
 ```
 
 Return set of elements on which `callback` condition returns `True`.
@@ -284,7 +284,7 @@ e.keep_if(lambda x: x % 2 == 0)
 ## len
 
 ```python
-Set.__len__(self)
+Set.__len__(self) -> int
 ```
 
 Returns the number of elements in the set.
@@ -292,7 +292,7 @@ Returns the number of elements in the set.
 ## map
 
 ```python
-Set.map(self, callback)
+Set.map(self, callback: typing.Callable[[VT], typing.Any]) -> Set[typing.Any]
 ```
 
 Retuns a new set containing transformed element based on `callback`.
@@ -302,7 +302,7 @@ If `callback` returns the same value on different elements, the resulted set con
 ## reject
 
 ```python
-Set.reject(self, callback)
+Set.reject(self, callback: typing.Callable[[VT], bool]) -> Set[VT]
 ```
 
 Returns a new set without containing all elements that passed the `callback` condition.
@@ -318,7 +318,7 @@ e.reject(lambda x: x % 2 == 0)
 ## select
 
 ```python
-Set.select(self, callback)
+Set.select(self, callback: typing.Callable[[VT], bool]) -> Set[VT]
 ```
 
 Return set of elements on which `callback` condition returns `True`.
@@ -334,7 +334,7 @@ e.select(lambda x: x % 2 == 0)
 ## str
 
 ```python
-Set.__str__(self)
+Set.__str__(self) -> str
 ```
 
 Returns the string representation of the set.
@@ -342,7 +342,7 @@ Returns the string representation of the set.
 ## subtract
 
 ```python
-Set.subtract(self, other)
+Set.subtract(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns the difference of two sets.
@@ -350,7 +350,7 @@ Returns the difference of two sets.
 ## to_set
 
 ```python
-Set.to_set(self)
+Set.to_set(self) -> typing.Set[VT]
 ```
 
 Returns the current object as a built-in `set`.
@@ -358,7 +358,7 @@ Returns the current object as a built-in `set`.
 ## union
 
 ```python
-Set.union(self, other)
+Set.union(self, other: Set[VT]) -> Set[VT]
 ```
 
 Returns the union of the current object and `other`.
